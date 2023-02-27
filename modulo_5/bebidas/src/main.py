@@ -1,13 +1,13 @@
 import re
 
 
-def validateName(name):
+def validateName(name): # receives a String
     alphabetic = re.search("[^a-zA-Z]",name) is None
     length = len(name) >= 2 and len(name) <= 15
     return alphabetic and length
 
 
-def validateSize(sizeArray):
+def validateSize(sizeArray): # receives a List of Strings
     numeric = re.search(r"\D",''.join(sizeArray)) is None
     if not numeric:
         return False
@@ -19,5 +19,15 @@ def validateSize(sizeArray):
     return length and order and sizeRange and nonduplicate
 
 
-def validateString(string):
+def validateString(string): # receives a String
+    input = string.replace(' ','').split(',')
+    if len(input) < 2 or not validateName(input[0]):
+        return False
     return True
+
+if __name__ == '__main__':
+    drink = input('> ')
+    if validateString:
+        print('Bebida añadida con éxito')
+    else:
+        print('Ingrese una entrada válida')
